@@ -1,6 +1,6 @@
 # Neutro B website framework
 
-A simple, static site for **Neutro B**, an indie game and story studio in Bundaberg, Queensland.
+A simple, static site for **Neutro B**, an indie game and story studio.
 
 This is a framework only: plain HTML and CSS, no build step, ready to style later and to host for free on GitHub Pages. Nothing in this folder has been published or pushed anywhere.
 
