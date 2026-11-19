@@ -7,16 +7,17 @@
    COLOURS — change these to restyle the whole site later
    ============================================================ */
 :root {
-  --color-bg: #f6f3ee;
-  --color-surface: #fffdf9;
-  --color-text: #1c1a17;
-  --color-muted: #5c574f;
-  --color-accent: #3d5a3d;          /* headings, links, brand marks */
-  --color-accent-hover: #2c422c;
-  --color-line: #d8d2c8;
-  --color-placeholder-bg: #efe8dc;
-  --color-placeholder-line: #b9a88a;
-  --color-placeholder-text: #6e6454;
+  --color-bg: #0e0a08;
+  --color-surface: rgba(14, 10, 8, 0.88);
+  --color-panel: rgba(16, 11, 9, 0.86);
+  --color-text: #f3ebe2;
+  --color-muted: #cdc2b5;
+  --color-accent: #ff9a3d;          /* ember orange: headings, links, brand marks */
+  --color-accent-hover: #ffc078;
+  --color-line: rgba(255, 154, 61, 0.28);
+  --color-placeholder-bg: rgba(255, 255, 255, 0.05);
+  --color-placeholder-line: rgba(255, 154, 61, 0.5);
+  --color-placeholder-text: #cdc2b5;
 
   /* Layout */
   --max-width: 56rem;
@@ -41,6 +42,7 @@ body {
   margin: 0;
   font-family: var(--font-sans);
   background: var(--color-bg);
+  position: relative;
   color: var(--color-text);
   line-height: 1.6;
   min-height: 100vh;
@@ -229,7 +231,7 @@ h3 {
    ============================================================ */
 .screenshot-row {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 0.85rem;
   margin: 1.1rem 0 1.25rem;
 }
@@ -276,4 +278,106 @@ code {
 @media (max-width: 700px) {
   .screenshot-row { grid-template-columns: 1fr; }
   .site-header__inner { flex-wrap: wrap; }
+}
+
+/* ============================================================
+   BANNER BACKGROUND — Neutro B YouTube banner, full page, fixed
+   A dark gradient sits over the image so text stays readable.
+   ============================================================ */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(180deg, rgba(10, 7, 5, 0.35) 0%, rgba(10, 7, 5, 0.6) 55%, rgba(10, 7, 5, 0.82) 100%),
+    url("images/banner.jpg") center / cover no-repeat;
+  background-color: var(--color-bg);
+}
+
+.site-header,
+.site-footer {
+  background: var(--color-surface);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+.site-header { border-bottom-color: var(--color-line); }
+.site-footer { border-top-color: var(--color-line); color: var(--color-muted); }
+
+.brand__name { color: var(--color-text); }
+
+/* Hero sits straight on the banner, with a text shadow for legibility */
+.hero {
+  padding: clamp(3rem, 12vh, 7rem) 0 clamp(2rem, 6vh, 3.5rem);
+  border-bottom: 1px solid var(--color-line);
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.85), 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+.hero h1 { color: var(--color-accent); }
+.lede { color: var(--color-text); }
+
+/* Content blocks get a solid dark panel */
+main .prose {
+  background: var(--color-panel);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius);
+  padding: 1.4rem 1.5rem;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+
+main .policy.prose { padding: clamp(1.25rem, 4vw, 2.25rem); }
+.policy h2 { margin-top: 1.8rem; }
+
+.nav a { color: var(--color-text); }
+.nav a:hover,
+.nav a[aria-current="page"] { color: var(--color-accent); }
+
+a { text-decoration-thickness: 1px; }
+.logo-placeholder { border-color: var(--color-placeholder-line); }
+code { color: var(--color-accent-hover); }
+
+@media (max-width: 700px) {
+  main .prose { padding: 1.1rem 1.1rem; }
+  .hero { padding-top: 2.5rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+/* ============================================================
+   GAME SCREENSHOTS — one large, two below on desktop
+   ============================================================ */
+.shot { margin: 0; }
+.shot--large { grid-column: 1 / -1; }
+
+.shot a {
+  display: block;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.55);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.shot a:hover,
+.shot a:focus-visible {
+  border-color: var(--color-accent);
+  box-shadow: 0 6px 26px rgba(255, 154, 61, 0.25);
+}
+
+.shot img { width: 100%; height: auto; }
+
+.shot figcaption {
+  margin-top: 0.45rem;
+  font-size: 0.9rem;
+  color: var(--color-muted);
+  text-align: center;
+}
+
+@media (max-width: 700px) {
+  .screenshot-row { grid-template-columns: 1fr; }
 }
