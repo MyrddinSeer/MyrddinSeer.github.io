@@ -1,0 +1,279 @@
+/* Neutro B site framework
+   Plain CSS, no build step. Swap the variables and placeholders
+   below when you are ready to make it look good.
+*/
+
+/* ============================================================
+   COLOURS — change these to restyle the whole site later
+   ============================================================ */
+:root {
+  --color-bg: #f6f3ee;
+  --color-surface: #fffdf9;
+  --color-text: #1c1a17;
+  --color-muted: #5c574f;
+  --color-accent: #3d5a3d;          /* headings, links, brand marks */
+  --color-accent-hover: #2c422c;
+  --color-line: #d8d2c8;
+  --color-placeholder-bg: #efe8dc;
+  --color-placeholder-line: #b9a88a;
+  --color-placeholder-text: #6e6454;
+
+  /* Layout */
+  --max-width: 56rem;
+  --space: 1.25rem;
+  --radius: 0.75rem;
+
+  /* Type — system fonts only, so the site works offline */
+  --font-sans: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --font-serif: Georgia, "Palatino Linotype", Palatino, "Times New Roman", serif;
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+a {
+  color: var(--color-accent);
+  text-underline-offset: 0.15em;
+}
+
+a:hover { color: var(--color-accent-hover); }
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+/* ============================================================
+   SITE CHROME
+   ============================================================ */
+.site-header {
+  border-bottom: 1px solid var(--color-line);
+  background: var(--color-surface);
+}
+
+.site-header__inner,
+.site-footer__inner,
+.wrap {
+  width: min(var(--max-width), calc(100% - 2 * var(--space)));
+  margin-inline: auto;
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem 0;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.brand__name {
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 0.95rem;
+}
+
+/* ============================================================
+   LOGO — replace the placeholder in the header with:
+   <img src="images/logo.png" alt="Neutro B" class="logo">
+   Suggested size: about 64px tall, transparent PNG or SVG.
+   ============================================================ */
+.logo-placeholder,
+.logo {
+  width: 3rem;
+  height: 3rem;
+  flex: 0 0 auto;
+}
+
+.logo {
+  object-fit: contain;
+}
+
+.logo-placeholder {
+  display: grid;
+  place-items: center;
+  border: 1px dashed var(--color-placeholder-line);
+  background: var(--color-placeholder-bg);
+  color: var(--color-placeholder-text);
+  border-radius: 0.4rem;
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.2;
+  padding: 0.2rem;
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.1rem;
+  font-size: 0.95rem;
+}
+
+.nav a { text-decoration: none; color: var(--color-text); }
+.nav a:hover,
+.nav a[aria-current="page"] {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+main {
+  flex: 1;
+  padding: 2.25rem 0 3.5rem;
+}
+
+.site-footer {
+  border-top: 1px solid var(--color-line);
+  background: var(--color-surface);
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  padding: 1.4rem 0 1.6rem;
+}
+
+.site-footer p { margin: 0.2rem 0; }
+
+/* ============================================================
+   PAGE SECTIONS
+   ============================================================ */
+.hero {
+  padding-bottom: 1.75rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.hero h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(2.1rem, 5vw, 3.1rem);
+  line-height: 1.15;
+  margin: 0 0 0.5rem;
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+.lede {
+  font-size: 1.2rem;
+  color: var(--color-muted);
+  margin: 0;
+}
+
+.place {
+  margin: 0.6rem 0 0;
+  color: var(--color-muted);
+  font-size: 0.95rem;
+}
+
+section { margin: 0 0 2.4rem; }
+
+h2 {
+  font-family: var(--font-serif);
+  font-size: 1.55rem;
+  margin: 0 0 0.7rem;
+  color: var(--color-accent);
+}
+
+h3 {
+  font-size: 1.1rem;
+  margin: 1.5rem 0 0.5rem;
+  color: var(--color-accent);
+}
+
+.prose p { margin: 0 0 0.85rem; }
+.prose p:last-child { margin-bottom: 0; }
+
+.prose ul {
+  margin: 0.4rem 0 0.85rem;
+  padding-left: 1.2rem;
+}
+
+.prose li { margin: 0.25rem 0; }
+
+.meta {
+  color: var(--color-muted);
+  font-size: 0.95rem;
+  margin: 0 0 1.25rem;
+}
+
+/* ============================================================
+   SCREENSHOTS — drop images into images/ and replace each
+   .screenshot-placeholder with, for example:
+   <img src="images/ozzie-1.png" alt="Ozzie Battler screenshot">
+   Suggested size: 16:9 or phone frames, around 800px wide.
+   ============================================================ */
+.screenshot-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.85rem;
+  margin: 1.1rem 0 1.25rem;
+}
+
+.screenshot-placeholder {
+  aspect-ratio: 16 / 10;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 0.75rem;
+  border: 1px dashed var(--color-placeholder-line);
+  background: var(--color-placeholder-bg);
+  color: var(--color-placeholder-text);
+  border-radius: var(--radius);
+  font-size: 0.85rem;
+  line-height: 1.35;
+}
+
+.contact-email {
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+address { font-style: normal; }
+
+/* Privacy policy body text stays readable at a slightly narrower measure */
+.policy {
+  max-width: 42rem;
+}
+
+.policy h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.7rem, 4vw, 2.2rem);
+  line-height: 1.2;
+  margin: 0 0 0.6rem;
+  color: var(--color-accent);
+}
+
+code {
+  font-family: ui-monospace, "Cascadia Code", "SF Mono", Consolas, monospace;
+  font-size: 0.9em;
+}
+
+@media (max-width: 700px) {
+  .screenshot-row { grid-template-columns: 1fr; }
+  .site-header__inner { flex-wrap: wrap; }
+}
